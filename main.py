@@ -172,7 +172,7 @@ def buscar_epg():
 	lineas_programme_6 = extraer_lineas_con_tag(archivo6, '<programme start=')
 	Linea_fin_xml = extraer_lineas_con_tag(archivo1, '</tv>')
  
-	# Combinar todas las l�neas en el orden requerido
+	# Combinar todas las lineas en el orden requerido
 	lineas_combined = [linea_xml] + lineas_channel_1 + lineas_channel_2 + lineas_channel_3 + lineas_channel_4 + lineas_channel_5 + lineas_channel_6  
 	lineas_combined += lineas_programme_1 + lineas_programme_2 + lineas_programme_3 + lineas_programme_4 + lineas_programme_5 + lineas_programme_6 + Linea_fin_xml
 
