@@ -2,6 +2,9 @@ import subprocess
 import re
 import schedule
 import time
+import setproctitle
+
+setproctitle.setproctitle("EGP_Scanner")
 
 # Rutas de los archivos
 archivo1 = '/home/villafapd/Documents/epg/Guia_DirecTv.xml'
