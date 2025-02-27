@@ -5,6 +5,6 @@ El codigo realiza:
 1) Escaneo de varios sitios (nzxmltv.com, epgshare01.online(RAKUTEN_PL1,US1.channels,DISTROTV1.channels), directv.com.ar, cableplus.com.uy) que tienen la EPG (https://github.com/iptv-org/epg/tree/master/sites)
 2) Luego del escaneo se generan varios archivos .xml (Guia_XXXXX.xml)
 3) Se genera un reemplazo de caracteres especiales (Español) Ñ,ñ,á,é,í,ó,ú,Á,É,Í,Ó,Ú
-4) Se genera un reemplazo de una cadane de texto por otra.
+4) Se genera un reemplazo de una cadana de texto por otra.
 5) Se guarda toda la informacion de cada archivo xml generado en un archivo guide.xml
 6) Se ejecuta el codigo a las 3 am automaticamente
