@@ -14,6 +14,7 @@ archivo4 = '/home/villafapd/Documents/epg/Guia_RAKUTEN_PL1.xml'
 archivo5 = '/home/villafapd/Documents/epg/Guia_US1.xml'
 archivo6 = '/home/villafapd/Documents/epg/Guia_nzxmltv.com.xml'
 archivo7 = '/home/villafapd/Documents/epg/Guia_PlutoTv_Vevo.xml'
+archivo8 = '/home/villafapd/Documents/epg/Guia_PlutoTv_ar.xml'
 archivo_guide = '/home/villafapd/Documents/epg/guide.xml'
 
 def armar_guide_xml():
@@ -26,6 +27,7 @@ def armar_guide_xml():
 	lineas_channel_5 = extraer_lineas_con_tag(archivo5, '<channel id=')
 	lineas_channel_6 = extraer_lineas_con_tag(archivo6, '<channel id=')
 	lineas_channel_7 = extraer_lineas_con_tag(archivo7, '<channel id=')
+	lineas_channel_8 = extraer_lineas_con_tag(archivo8, '<channel id=')
  
 	lineas_programme_1 = extraer_lineas_con_tag(archivo1, '<programme start=')
 	lineas_programme_2 = extraer_lineas_con_tag(archivo2, '<programme start=')
@@ -34,11 +36,12 @@ def armar_guide_xml():
 	lineas_programme_5 = extraer_lineas_con_tag(archivo5, '<programme start=')
 	lineas_programme_6 = extraer_lineas_con_tag(archivo6, '<programme start=')
 	lineas_programme_7 = extraer_lineas_con_tag(archivo7, '<programme start=')
+	lineas_programme_8 = extraer_lineas_con_tag(archivo8, '<programme start=')
 	Linea_fin_xml = extraer_lineas_con_tag(archivo1, '</tv>')
  
 	# Combinar todas las lineas en el orden requerido
-	lineas_combined = [linea_xml] + lineas_channel_1 + lineas_channel_2 + lineas_channel_3 + lineas_channel_4 + lineas_channel_5 + lineas_channel_6 + lineas_channel_7 
-	lineas_combined += lineas_programme_1 + lineas_programme_2 + lineas_programme_3 + lineas_programme_4 + lineas_programme_5 + lineas_programme_6 + lineas_programme_7 + Linea_fin_xml
+	lineas_combined = [linea_xml] + lineas_channel_1 + lineas_channel_2 + lineas_channel_3 + lineas_channel_4 + lineas_channel_5 + lineas_channel_6 + lineas_channel_7 + lineas_channel_8
+	lineas_combined += lineas_programme_1 + lineas_programme_2 + lineas_programme_3 + lineas_programme_4 + lineas_programme_5 + lineas_programme_6 + lineas_programme_7 + lineas_programme_8 + Linea_fin_xml
 
 	lineas_combined = reemplazar_caracteres_especiales_linea_por_linea(lineas_combined)
 	lineas_combined = reemplazar_caracteres_especiales_linea_por_linea(lineas_combined)
@@ -59,7 +62,6 @@ def reemplazar_cadena_en_lista(lista_texto, cadena_buscar, cadena_reemplazar):
 		if cadena_buscar in linea:
 			lista_texto[i] = linea.replace(cadena_buscar, cadena_reemplazar)
 	return lista_texto
-
 
 def reemplazar_caracteres_especiales_linea_por_linea(lista_texto):
 	if not isinstance(lista_texto, list):
@@ -136,9 +138,18 @@ def buscar_epg():
 	# Ejecutar los comandos y luego leer la salida
 	#-----------------------------------------------------------------------------------------------
 	print('Comenzando el escaneo de sitios EPG')
-	print("Espere por favor mientras se realiza el escaneo de nzxmltv.com")
+	print("Espere por favor mientras se realiza el escaneo de PlutoTv")
+	salida, site = ejecutar_comando("sites/pluto.tv/pluto.tv_ar.channels.xml","Guia_PlutoTv_ar.xml")
+	if salida:
+		numero_canales = leer_salida_terminal(salida)
+		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
+	else: 
+		print(f"Error en la descarga de la Guia de programacaion para {site}") 
+
+	print("Espere por favor mientras se realiza el escaneo de PlutoTv")
+	time.sleep(5)
 	#-----------------------------------------------------------------------------------------------
-	salida, site = ejecutar_comando("npm run grab --- --output=Guia_PlutoTv_Vevo.xml --channels=sites/nzxmltv.com/nzxmltv.com_pluto.channels.xml","Guia_PlutoTv_Vevo.xml")
+	salida, site = ejecutar_comando("sites/nzxmltv.com/nzxmltv.com_pluto.channels.xml","Guia_PlutoTv_Vevo.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
 		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
@@ -229,7 +240,7 @@ if __name__ == "__main__":
 	schedule.every().day.at("18:00").do(buscar_epg)
 	schedule.every().day.at("20:00").do(buscar_epg_redbulltv)
 	schedule.every().day.at("23:00").do(buscar_epg_redbulltv)
-	
+	buscar_epg()
 	#buscar_epg()
 	try:
 		while True:
