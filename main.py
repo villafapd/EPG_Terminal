@@ -12,7 +12,7 @@ archivo2 = '/home/villafapd/Documents/epg/Guia_DistroTv.xml'
 archivo3 = '/home/villafapd/Documents/epg/Guia_CablePlus.xml'
 archivo4 = '/home/villafapd/Documents/epg/Guia_RAKUTEN_PL1.xml'
 archivo5 = '/home/villafapd/Documents/epg/Guia_US1.xml'
-archivo6 = '/home/villafapd/Documents/epg/Guia_nzxmltv.com.xml'
+archivo6 = '/home/villafapd/Documents/epg/Guia_RedbullTv.xml'
 archivo7 = '/home/villafapd/Documents/epg/Guia_PlutoTv_Vevo.xml'
 archivo8 = '/home/villafapd/Documents/epg/Guia_PlutoTv_ar.xml'
 archivo_guide = '/home/villafapd/Documents/epg/guide.xml'
@@ -212,7 +212,7 @@ def buscar_epg():
 
 def buscar_epg_redbulltv():
 	print("Espere por favor mientras se realiza el escaneo de nzxmltv.com")
-	salida, site = ejecutar_comando("sites/nzxmltv.com/nzxmltv.com_redbull.channels.xml","Guia_nzxmltv.com.xml")
+	salida, site = ejecutar_comando("sites/nzxmltv.com/nzxmltv.com_redbull.channels.xml","Guia_RedbullTv.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
 		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
@@ -231,16 +231,16 @@ if __name__ == "__main__":
 # Programar la funcion para que se ejecute cada 6 horas
 	#schedule.every(HorasEjecucion).hours.do(busca_url)
 	schedule.every().day.at("02:00").do(buscar_epg_redbulltv)
-	schedule.every().day.at("05:00").do(buscar_epg_redbulltv)
+	#schedule.every().day.at("05:00").do(buscar_epg_redbulltv)
 	schedule.every().day.at("07:00").do(buscar_epg)
 	schedule.every().day.at("08:00").do(buscar_epg_redbulltv)
-	schedule.every().day.at("11:00").do(buscar_epg_redbulltv)
-	schedule.every().day.at("14:00").do(buscar_epg_redbulltv)
-	schedule.every().day.at("17:00").do(buscar_epg_redbulltv) 
+	#schedule.every().day.at("11:00").do(buscar_epg_redbulltv)
+	schedule.every().day.at("13:00").do(buscar_epg_redbulltv)
+	#schedule.every().day.at("17:00").do(buscar_epg_redbulltv) 
 	schedule.every().day.at("18:00").do(buscar_epg)
-	schedule.every().day.at("20:00").do(buscar_epg_redbulltv)
+	schedule.every().day.at("18:30").do(buscar_epg_redbulltv)
 	schedule.every().day.at("23:00").do(buscar_epg_redbulltv)
-	buscar_epg()
+	#uscar_epg()
 	buscar_epg_redbulltv()
 	try:
 		while True:
