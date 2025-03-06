@@ -237,7 +237,7 @@ def buscar_epg():
 	armar_guide_xml()
 
 def buscar_epg_redbulltv():
-	print("Espere por favor mientras se realiza el escaneo de nzxmltv.com")
+	print("Espere por favor mientras se realiza el escaneo de nzxmltv.com RedBull Tv")
 	salida, site = ejecutar_comando("sites/nzxmltv.com/nzxmltv.com_redbull.channels.xml","Guia_RedbullTv.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
