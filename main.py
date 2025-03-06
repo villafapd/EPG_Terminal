@@ -15,6 +15,7 @@ archivo5 = '/home/villafapd/Documents/epg/Guia_US1.xml'
 archivo6 = '/home/villafapd/Documents/epg/Guia_RedbullTv.xml'
 archivo7 = '/home/villafapd/Documents/epg/Guia_PlutoTv_Vevo.xml'
 archivo8 = '/home/villafapd/Documents/epg/Guia_PlutoTv_ar.xml'
+archivo9 = '/home/villafapd/Documents/epg/Guia_PlutoTv_us.xml'
 archivo_guide = '/home/villafapd/Documents/epg/guide.xml'
 
 def armar_guide_xml():
@@ -28,7 +29,8 @@ def armar_guide_xml():
 	lineas_channel_6 = extraer_lineas_con_tag(archivo6, '<channel id=')
 	lineas_channel_7 = extraer_lineas_con_tag(archivo7, '<channel id=')
 	lineas_channel_8 = extraer_lineas_con_tag(archivo8, '<channel id=')
- 
+	lineas_channel_9 = extraer_lineas_con_tag(archivo9, '<channel id=')
+  
 	lineas_programme_1 = extraer_lineas_con_tag(archivo1, '<programme start=')
 	lineas_programme_2 = extraer_lineas_con_tag(archivo2, '<programme start=')
 	lineas_programme_3 = extraer_lineas_con_tag(archivo3, '<programme start=')
@@ -37,11 +39,12 @@ def armar_guide_xml():
 	lineas_programme_6 = extraer_lineas_con_tag(archivo6, '<programme start=')
 	lineas_programme_7 = extraer_lineas_con_tag(archivo7, '<programme start=')
 	lineas_programme_8 = extraer_lineas_con_tag(archivo8, '<programme start=')
+	lineas_programme_9 = extraer_lineas_con_tag(archivo9, '<programme start=')
 	Linea_fin_xml = extraer_lineas_con_tag(archivo1, '</tv>')
  
 	# Combinar todas las lineas en el orden requerido
-	lineas_combined = [linea_xml] + lineas_channel_1 + lineas_channel_2 + lineas_channel_3 + lineas_channel_4 + lineas_channel_5 + lineas_channel_6 + lineas_channel_7 + lineas_channel_8
-	lineas_combined += lineas_programme_1 + lineas_programme_2 + lineas_programme_3 + lineas_programme_4 + lineas_programme_5 + lineas_programme_6 + lineas_programme_7 + lineas_programme_8 + Linea_fin_xml
+	lineas_combined = [linea_xml] + lineas_channel_1 + lineas_channel_2 + lineas_channel_3 + lineas_channel_4 + lineas_channel_5 + lineas_channel_6 + lineas_channel_7 + lineas_channel_8 + lineas_channel_9
+	lineas_combined += lineas_programme_1 + lineas_programme_2 + lineas_programme_3 + lineas_programme_4 + lineas_programme_5 + lineas_programme_6 + lineas_programme_7 + lineas_programme_8 + lineas_programme_9 + Linea_fin_xml
 
 	lineas_combined = reemplazar_caracteres_especiales_linea_por_linea(lineas_combined)
 	lineas_combined = reemplazar_caracteres_especiales_linea_por_linea(lineas_combined)
@@ -138,6 +141,19 @@ def buscar_epg():
 	# Ejecutar los comandos y luego leer la salida
 	#-----------------------------------------------------------------------------------------------
 	print('Comenzando el escaneo de sitios EPG')
+	print("Espere por favor mientras se realiza el escaneo de PlutoTv Us")
+	salida, site = ejecutar_comando("sites/pluto.tv/pluto.tv_us.channels.xml","Guia_PlutoTv_us.xml")
+	if salida:
+		numero_canales = leer_salida_terminal(salida)
+		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
+	else: 
+		print(f"Error en la descarga de la Guia de programacaion para {site}") 
+
+	print("Espere por favor mientras se realiza el escaneo de PlutoTv Ar")
+	time.sleep(3)
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
+	print('Comenzando el escaneo de sitios EPG')
 	print("Espere por favor mientras se realiza el escaneo de PlutoTv")
 	salida, site = ejecutar_comando("sites/pluto.tv/pluto.tv_ar.channels.xml","Guia_PlutoTv_ar.xml")
 	if salida:
@@ -146,8 +162,9 @@ def buscar_epg():
 	else: 
 		print(f"Error en la descarga de la Guia de programacaion para {site}") 
 
-	print("Espere por favor mientras se realiza el escaneo de PlutoTv")
-	time.sleep(5)
+	print("Espere por favor mientras se realiza el escaneo de PlutoTv de nzxmltv.com")
+	time.sleep(3)
+	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
 	salida, site = ejecutar_comando("sites/nzxmltv.com/nzxmltv.com_pluto.channels.xml","Guia_PlutoTv_Vevo.xml")
 	if salida:
@@ -158,7 +175,7 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de RAKUTEN_PL1.channels")
-	time.sleep(5)
+	time.sleep(3)
 	#-----------------------------------------------------------------------------------------------
 	salida, site = ejecutar_comando("sites/epgshare01.online/epgshare01.online_RAKUTEN_PL1.channels.xml","Guia_RAKUTEN_PL1.xml")
 	if salida:
@@ -169,7 +186,7 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de US1.channels")
-	time.sleep(5)
+	time.sleep(3)
 	salida, site = ejecutar_comando("sites/epgshare01.online/epgshare01.online_US1.channels.xml","Guia_US1.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
@@ -179,7 +196,7 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de DISTROTV1.channels.xml")
-	time.sleep(10)
+	time.sleep(3)
 	salida, site = ejecutar_comando("sites/epgshare01.online/epgshare01.online_DISTROTV1.channels.xml","Guia_DistroTv.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
@@ -189,7 +206,7 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de directv.com.ar")
-	time.sleep(10)
+	time.sleep(3)
 	salida, site = ejecutar_comando_site("directv.com.ar","Guia_DirecTv.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
