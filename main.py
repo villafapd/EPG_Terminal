@@ -128,7 +128,6 @@ def ejecutar_comando_site(SITE,NOMBRE_ARCHIVO):
 
 	return salida.decode(),SITE
 
-
 def leer_salida_terminal(salida):
 	lineas = salida.split('\n')
 	for linea in lineas:
