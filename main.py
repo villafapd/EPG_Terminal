@@ -241,7 +241,7 @@ if __name__ == "__main__":
 	schedule.every().day.at("18:30").do(buscar_epg_redbulltv)
 	schedule.every().day.at("23:00").do(buscar_epg_redbulltv)
 	#uscar_epg()
-	buscar_epg_redbulltv()
+	#buscar_epg_redbulltv()
 	try:
 		while True:
 			schedule.run_pending()
