@@ -147,20 +147,20 @@ def buscar_epg():
 		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
 	else: 
 		print(f"Error en la descarga de la Guia de programacaion para {site}") 
-
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de PlutoTv Ar")
 	time.sleep(3)
 	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
-	print('Comenzando el escaneo de sitios EPG')
-	print("Espere por favor mientras se realiza el escaneo de PlutoTv")
 	salida, site = ejecutar_comando("sites/pluto.tv/pluto.tv_ar.channels.xml","Guia_PlutoTv_ar.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
 		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
 	else: 
 		print(f"Error en la descarga de la Guia de programacaion para {site}") 
-
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de PlutoTv de nzxmltv.com")
 	time.sleep(3)
 	#-----------------------------------------------------------------------------------------------
@@ -176,6 +176,7 @@ def buscar_epg():
 	print("Espere por favor mientras se realiza el escaneo de RAKUTEN_PL1.channels")
 	time.sleep(3)
 	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	salida, site = ejecutar_comando("sites/epgshare01.online/epgshare01.online_RAKUTEN_PL1.channels.xml","Guia_RAKUTEN_PL1.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
@@ -186,6 +187,8 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de US1.channels")
 	time.sleep(3)
+	#-----------------------------------------------------------------------------------------------
+	#----------------------------------------------------------------------------------------------- 
 	salida, site = ejecutar_comando("sites/epgshare01.online/epgshare01.online_US1.channels.xml","Guia_US1.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
@@ -196,6 +199,8 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de DISTROTV1.channels.xml")
 	time.sleep(3)
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	salida, site = ejecutar_comando("sites/epgshare01.online/epgshare01.online_DISTROTV1.channels.xml","Guia_DistroTv.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
@@ -206,15 +211,20 @@ def buscar_epg():
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de directv.com.ar")
 	time.sleep(3)
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	salida, site = ejecutar_comando_site("directv.com.ar","Guia_DirecTv.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
 		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
 	else: 
 		print(f"Error en la descarga de la Guia de programacaion para {site}") 
-
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de cableplus.com.uy")
-	time.sleep(10)
+	time.sleep(3)
+	#-----------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------
 	salida, site = ejecutar_comando_site("cableplus.com.uy","Guia_CablePlus.xml")
 	if salida:
 		numero_canales = leer_salida_terminal(salida)
