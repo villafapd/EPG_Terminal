@@ -143,6 +143,7 @@ def buscar_epg():
 	# Ejecutar los comandos y luego leer la salida
 	#-----------------------------------------------------------------------------------------------
 	print('Comenzando el escaneo de sitios EPG')
+	"""
 	print("Espere por favor mientras se realiza el escaneo de Mi Tv")
 	salida, site = ejecutar_comando("sites/mi.tv/mi.tv_ar.channels.xml","Guia_Mitv.xml")
 	if salida:
@@ -150,6 +151,7 @@ def buscar_epg():
 		print(f"Guia descargada correctamente para los {numero_canales} canales del sitio {site}")
 	else: 
 		print(f"Error en la descarga de la Guia de programacaion para {site}") 
+	"""
 	#-----------------------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------
 	print("Espere por favor mientras se realiza el escaneo de PlutoTv Us")
